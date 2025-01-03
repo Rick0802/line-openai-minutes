@@ -1,0 +1,59 @@
+{
+  "name": "LINE OpenAI Minutes",
+  "description": "LINEグループの会話を要約し、議事録を自動作成するサービス",
+  "keywords": [
+    "python",
+    "line-bot",
+    "openai",
+    "minutes"
+  ],
+  "env": {
+    "LINE_CHANNEL_SECRET": {
+      "description": "LINE Channel Secret",
+      "required": true
+    },
+    "LINE_CHANNEL_ACCESS_TOKEN": {
+      "description": "LINE Channel Access Token",
+      "required": true
+    },
+    "OPENAI_API_KEY": {
+      "description": "OpenAI API Key",
+      "required": true
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "description": "AWS Access Key ID (optional)",
+      "required": false
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "description": "AWS Secret Access Key (optional)",
+      "required": false
+    },
+    "AWS_REGION": {
+      "description": "AWS Region (optional)",
+      "required": false,
+      "value": "ap-northeast-1"
+    },
+    "AWS_SQS_QUEUE_URL": {
+      "description": "AWS SQS Queue URL (optional)",
+      "required": false
+    }
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  }
+}
